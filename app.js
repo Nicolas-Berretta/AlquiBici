@@ -1,19 +1,18 @@
-var express = require('express');
-var ejs = require('ejs');
-var path = require('path');
+const express = require('express');
+const ejs = require('ejs');
+const path = require('path');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const {connectDB} = require("./utils/database");
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+connectDB().then(() => {console.log("tuki")});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
