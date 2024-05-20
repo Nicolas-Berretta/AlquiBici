@@ -3,9 +3,8 @@ var router = express.Router();
 var dbConnection = require("../utils/database");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    console.log(dbConnection.db.collection("message").find());
-    res.render('index', { data: dbConnection.get("message") });
+router.get('/', async function(req, res, next) {
+    res.render('index', { data: await dbConnection.collection("message").findOne() });
 });
 
 module.exports = router;
