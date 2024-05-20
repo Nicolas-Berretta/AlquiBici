@@ -20,4 +20,6 @@ exports.connectDB = async () => {
     dbConnection.on("error", (err) => {
         console.error(`Connection error: ${err}`);
     });
+
+    await dbConnection.collection("message").insertOne({content: "is this working?"})
 }
