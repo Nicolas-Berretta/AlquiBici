@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var dbConnection = require("../utils/database");
+var database = require("../utils/database");
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    res.render('index', { data: await dbConnection.collection("message").findOne() });
+    res.render('index', { data: await database.collection("message").find() });
 });
 
 module.exports = router;

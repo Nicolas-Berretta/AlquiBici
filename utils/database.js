@@ -1,27 +1,8 @@
-const mongoose = require("mongoose");
 const config = require("./config");
+const {MongoClient} = require("mongodb");
 
-connectDB = async () => {
-    let mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
+const mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
 
-    try {
-        await mongoose.connect(mongoUri);
-    } catch (err) {
-        console.log(err.message);
-        process.exit(1);
-    }
+const client = new MongoClient(mongoUri);
 
-    const dbConnection = mongoose.connection;
-
-    dbConnection.once("open", () => {
-        console.log(`Database connected: ${mongoUri}`);
-    });
-
-    dbConnection.on("error", (err) => {
-        console.error(`Connection error: ${err}`);
-    });
-    console.log("connected yahoo");
-    return dbConnection;
-}
-
-module.exports = mongoose.connection;
+module.exports = client.db(config.mongodb.database);

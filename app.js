@@ -4,7 +4,7 @@ const path = require('path');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const dbConnection = require("./utils/database");
+const database = require("./utils/database");
 
 const app = express();
 
