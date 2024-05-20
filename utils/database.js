@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("./config");
 
-exports.connectDB = async () => {
+connectDB = async () => {
     let mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
 
     try {
@@ -20,6 +20,10 @@ exports.connectDB = async () => {
     dbConnection.on("error", (err) => {
         console.error(`Connection error: ${err}`);
     });
-
-    await dbConnection.collection("message").insertOne({content: "is this working?"})
+    console.log("connected yahoo");
+    return dbConnection;
 }
+
+const dbConnection = connectDB().then(dbConnection =>{return dbConnection});
+
+module.exports = dbConnection;
