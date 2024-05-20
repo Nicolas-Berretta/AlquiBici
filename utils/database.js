@@ -24,6 +24,4 @@ connectDB = async () => {
     return dbConnection;
 }
 
-const dbConnection = connectDB().then(dbConnection =>{return dbConnection});
-
-module.exports = dbConnection;
+module.exports = mongoose.connection;
