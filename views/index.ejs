@@ -4,6 +4,10 @@
     <title>Index</title>
 </head>
 <body>
-    <p><%= data.content%></p>
+<ul>
+    <%data.forEach(value => { %>
+     <li><%= value.content%></li>
+    <%});%>
+</ul>
 </body>
 </html>

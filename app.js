@@ -4,7 +4,6 @@ const path = require('path');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const database = require("./utils/database");
 
 const app = express();
 
