@@ -3,6 +3,10 @@ const database = require('../utils/database');
 
 const User= database.collection("user")
 
+exports.getUserById = async (id) => {
+    return await User.findOne({_id: id});
+}
+
 exports.getUserByEmail = async (email) => {
     return await User.findOne({email});
 }
