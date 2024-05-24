@@ -6,12 +6,7 @@ const {getBikeById} = require('./bikes');
 const Bike = database.collection("bike");
 
 exports.getAllBikes = async () => {
-    let bikes = await Bike.find().toArray();
-    let bikesData = [];
-    bikes.forEach(bike => {
-        bikesData.push(getBikeById(bike._id));
-    })
-    return bikesData;
+    return await Bike.find().toArray();
 }
 
 exports.getBikeById = async (id) => {
