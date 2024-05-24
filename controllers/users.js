@@ -1,10 +1,11 @@
 const express = require('express');
 const database = require('../utils/database');
+const mongoose = require("mongoose");
 
 const User= database.collection("user")
 
 exports.getUserById = async (id) => {
-    return await User.findOne({_id: id});
+    return await User.findOne({_id: mongoose.Types.ObjectId(id)});
 }
 
 exports.getUserByEmail = async (email) => {
