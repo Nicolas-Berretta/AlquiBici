@@ -8,7 +8,7 @@ router.get('/', async function(req, res, next) {
     let messages = await database.collection("message").find().toArray();
     let data = [];
     messages.forEach(message => data.push(JSON.stringify(message)));
-    res.render('index', { data: data});
+    res.render('index', {data: data});
 });
 
 router.get('/bikes', async function(req, res, next) {
