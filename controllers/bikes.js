@@ -1,7 +1,6 @@
 const express = require('express');
 const database = require('../utils/database');
-const {getUserById} = require("./users");
-const mongoose = require("mongoose");
+const {getUserByEmail} = require("./users");
 
 const Bike = database.collection("bike");
 
@@ -10,21 +9,23 @@ exports.getAllBikes = async () => {
 }
 
 exports.getBikeById = async (id) => {
-    let bike = await Bike.findOne({_id: mongoose.Types.ObjectId(id)});
-    let owner = await getUserById(bike.ownerId);
+    let bike = await Bike.findOne({id: id});
+    let owner = await getUserByEmail(bike.ownerEmail);
 
     return {
-        _id: id,
-        ownerId: owner._id,
+        id: id,
+        ownerEmail: owner.email,
         ownerName: owner.name,
         price: bike.price,
         distance: bike.distance,
     };
 }
 
-exports.createBike = async (ownerId, price) => {
+exports.createBike = async (ownerEmail, price) => {
+    let bikeCount = await Bike.countDocuments();
     let bike = {
-        ownerId: ownerId,
+        id: ownerEmail + bikeCount,
+        ownerEmail: ownerEmail,
         price: price,
         distance: 0
     }
