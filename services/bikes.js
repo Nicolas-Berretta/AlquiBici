@@ -14,7 +14,7 @@ exports.createBikeService = async (req, res) => {
 exports.getBikeService = async (req, res) => {
     let bikeId = req.params.bikeId;
 
-    let bike = await getBikeData(bikeId);
+    let bike = await getBikeById(bikeId);
 
     res.status(200).send(bike);
 }

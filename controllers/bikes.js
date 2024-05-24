@@ -13,14 +13,13 @@ exports.getBikeById = async (id) => {
     let bike = await Bike.findOne({_id: id});
     let owner = await getUserById(bike.ownerId);
 
-    let bikeData = {
+    return {
         _id: id,
         ownerId: owner._id,
         ownerName: owner.name,
         price: bike.price,
         distance: bike.distance,
-    }
-    return await Bike.findOne({_id: id});
+    };
 }
 
 exports.createBike = async (ownerId, price) => {
