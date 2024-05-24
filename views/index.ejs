@@ -6,8 +6,10 @@
 <body>
 <ul>
     <%data.forEach(value => { %>
-     <li><%= value%></li>
-    <%});%>
+        <%let keys = value.keys();%>
+        <%keys.forEach(key => {%>
+     <li><%= value[key]%></li>
+    <%})});%>
 </ul>
 </body>
 </html>
