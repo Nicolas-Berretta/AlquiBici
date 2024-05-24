@@ -16,7 +16,17 @@ exports.getBikeService = async (req, res) => {
 
     let bike = await getBikeById(bikeId);
 
-    res.status(200).send(bike);
+    let owner = await getUserByEmail(bike.ownerEmail);
+
+    let bikeData = {
+        id: bike.id,
+        ownerEmail: bike.ownerEmail,
+        ownerName: owner.name,
+        distance: bike.distance,
+        price: bike.price
+    }
+
+    res.status(200).send(bikeData);
 }
 
 exports.getBikesService = async (req, res) => {
