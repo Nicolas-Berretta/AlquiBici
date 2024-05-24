@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const ejs = require('ejs');
 const path = require('path');
 
@@ -13,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
