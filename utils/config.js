@@ -10,6 +10,6 @@ config.mqtt.port      = process.env.MQTT_PORT      || 1883;
 config.mongodb = {};
 config.mongodb.hostname   = process.env.MONGODB_HOSTNAME   || '127.0.0.1'; // Cambiar
 config.mongodb.port       = process.env.MONGODB_PORT       || 27017;
-config.mongodb.database   = process.env.MONGODB_DATABASE   || 'test';
+config.mongodb.database   = process.env.MONGODB_DATABASE   || 'alquibici';
 
 module.exports = config;
