@@ -1,7 +1,6 @@
 const express = require('express');
 const database = require('../utils/database');
 const {getUserById} = require("./users");
-const {getBikeById} = require('./bikes');
 
 const Bike = database.collection("bike");
 
