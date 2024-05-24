@@ -20,7 +20,8 @@ exports.getBikeService = async (req, res) => {
 }
 
 exports.getBikesService = async (req, res) => {
-    return await getAllBikes();
+    let bikes = await getAllBikes().catch(e => res.status(500).send("error getting bikes"));
+    res.status(200).send(bikes);
 }
 
 exports.rentBikeService = async (req, res) => {
