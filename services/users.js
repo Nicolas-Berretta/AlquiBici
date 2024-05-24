@@ -1,5 +1,5 @@
 const express = require('express');
-const userController = require('controllers/users');
+const userController = require('../controllers/users');
 
 exports.registerService = async (req, res) => {
     let name = req.body.name;
