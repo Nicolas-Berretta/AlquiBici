@@ -2,7 +2,7 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 
-const indexRouter = require('./routes/index');
+const viewsRouter = require('./routes/views');
 const usersRouter = require('./routes/users');
 const bikesRouter = require('./routes/bikes');
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/views', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/bikes', bikesRouter);
 

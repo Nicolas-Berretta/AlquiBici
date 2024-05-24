@@ -9,4 +9,14 @@ router.get('/', async function(req, res, next) {
     res.render('index', { data: await database.collection("message").find().toArray()});
 });
 
+router.get('/bikes', async function(req, res, next) {
+    const Bike = database.collection("bike");
+    res.render('index', {data: await Bike.find().toArray()});
+});
+
+router.get('/users', async function(req,res, next) {
+    const User = database.collection("user");
+    res.render('index', {data: await User.find().toArray()});
+})
+
 module.exports = router;

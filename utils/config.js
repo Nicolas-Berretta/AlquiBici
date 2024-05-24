@@ -11,6 +11,5 @@ config.mongodb = {};
 config.mongodb.hostname   = process.env.MONGODB_HOSTNAME   || '127.0.0.1'; // Cambiar
 config.mongodb.port       = process.env.MONGODB_PORT       || 27017;
 config.mongodb.database   = process.env.MONGODB_DATABASE   || 'test';
-config.mongodb.collection = process.env.MONGODB_COLLECTION || 'message';
 
 module.exports = config;
