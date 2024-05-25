@@ -6,18 +6,18 @@ exports.getRentByBikeId = async (bikeId) => {
     return await Rent.findOne({bikeId: bikeId});
 }
 
-exports.createRent = async (user, bike) => {
+exports.createRent = async (email, bikeId) => {
     let rentCount = await Rent.countDocuments();
-    let rentId = user.email + rentCount;
+    let rentId = email + rentCount;
     let rent = {
         rentId: rentId,
-        userEmail: user.email,
-        bikeId: bike.id,
+        userEmail: email,
+        bikeId: bikeId,
         distance: 0.0,
         active: true
     }
 
-    await Rent.insertOne(rent).catch(e => console.log(e));
+    await Rent.insertOne(rent);
 }
 
 exports.returnRent = async (rentId) => {

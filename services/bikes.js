@@ -48,7 +48,7 @@ exports.rentBikeService = async (req, res) => {
         });
     }
 
-    await createRent(user, bike).catch(e => {
+    await createRent(email, bike.id).catch(e => {
         // return res.status(500).send(e);
         console.log("boink");
     });
