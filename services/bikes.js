@@ -38,7 +38,6 @@ exports.rentBikeService = async (req, res) => {
     const email = req.body.email;
     const bikeId = req.body.bikeId;
 
-    let user = await getUserByEmail(email);
     let bike = await getBikeById(bikeId);
 
     if (await getRentByBikeId(bikeId) != null) {
@@ -49,8 +48,7 @@ exports.rentBikeService = async (req, res) => {
     }
 
     await createRent(email, bike.id).catch(e => {
-        // return res.status(500).send(e);
-        console.log("boink");
+        return res.status(500).send(e);
     });
     return res.status(200).send({
         success: true,
