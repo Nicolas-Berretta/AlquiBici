@@ -49,7 +49,8 @@ exports.rentBikeService = async (req, res) => {
     }
 
     await createRent(user, bike).catch(e => {
-        return res.status(500).send(e)
+        // return res.status(500).send(e);
+        console.log("boink");
     });
     return res.status(200).send({
         success: true,
