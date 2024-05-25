@@ -28,4 +28,12 @@ router.get('/users', async function(req,res, next) {
     res.render('index', {data: data});
 })
 
+router.get('/rents', async function(req,res, next) {
+    const Rent = database.collection("rent");
+    let rents = await Rent.find().toArray();
+    let data = [];
+    rents.forEach(rent => data.push(JSON.stringify(rent)));
+    res.render('index', {data: data});
+})
+
 module.exports = router;

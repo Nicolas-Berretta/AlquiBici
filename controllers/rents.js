@@ -7,7 +7,7 @@ exports.getRentByBikeId = async (bikeId) => {
 }
 
 exports.createRent = async (user, bike) => {
-    let rentCount = await Rent.countDocuments();
+    let rentCount = await Rent.countDocuments().catch(e => console.log("esto no funciona"));
     let rent = {
         rentId: user.email + rentCount,
         userEmail: user.email,
