@@ -7,16 +7,17 @@ exports.getRentByBikeId = async (bikeId) => {
 }
 
 exports.createRent = async (user, bike) => {
-    let rentCount = await Rent.countDocuments().catch(e => console.log("esto no funciona"));
+    let rentCount = await Rent.countDocuments();
+    let rentId = user.email + rentCount;
     let rent = {
-        rentId: user.email + rentCount,
+        rentId: rentId,
         userEmail: user.email,
         bikeId: bike.id,
         distance: 0.0,
         active: true
     }
 
-    await Rent.insertOne(rent);
+    await Rent.insertOne(rent).catch(e => console.log(e));
 }
 
 exports.returnRent = async (rentId) => {
