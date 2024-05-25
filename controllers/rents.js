@@ -2,14 +2,16 @@ const database = require('../utils/database');
 
 const Rent = database.collection("rent");
 
-exports.getRentById = async (id) => {
-    return await Rent.findOne({_id: id});
+exports.getRentByBikeId = async (bikeId) => {
+    return await Rent.findOne({bikeId: bikeId});
 }
 
 exports.createRent = async (user, bike) => {
+    let rentCount = await Rent.countDocuments();
     let rent = {
+        rentId: user.email + rentCount,
         userEmail: user.email,
-        bikeId: bike._id,
+        bikeId: bike.id,
         distance: 0.0,
         active: true
     }
@@ -17,6 +19,6 @@ exports.createRent = async (user, bike) => {
     await Rent.insertOne(rent);
 }
 
-exports.returnRent = async (id) => {
-    await Rent.findOneAndUpdate({_id: id}, {active: false})
+exports.returnRent = async (rentId) => {
+    await Rent.findOneAndUpdate({id: rentId, active: true}, {active: false})
 }

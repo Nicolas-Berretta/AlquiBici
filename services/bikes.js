@@ -1,6 +1,6 @@
 const { getAllBikes, getBikeById, createBike} = require("../controllers/bikes");
 const { getUserByEmail } = require("../controllers/users");
-const { createRent, returnRent} = require("../controllers/rents");
+const { createRent, returnRent, getRentByBikeId } = require("../controllers/rents");
 
 exports.createBikeService = async (req, res) => {
     let ownerEmail = req.body.ownerEmail;
@@ -40,6 +40,13 @@ exports.rentBikeService = async (req, res) => {
 
     let user = await getUserByEmail(email);
     let bike = await getBikeById(bikeId);
+
+    if (await getRentByBikeId(bikeId) != null) {
+        res.status(400).send({
+            success: false,
+            message: "bike already rented"
+        })
+    }
 
     await createRent(user, bike).catch(e => res.status(500).send(e));
     res.status(200).send({
