@@ -8,7 +8,7 @@ exports.createBikeService = async (req, res) => {
 
     await createBike(ownerEmail, price).catch(e => res.status(500).send(e));
 
-    res.status(200).send("bike created successfully");
+    return res.status(200).send("bike created successfully");
 }
 
 exports.getBikeService = async (req, res) => {
@@ -26,12 +26,12 @@ exports.getBikeService = async (req, res) => {
         price: bike.price
     }
 
-    res.status(200).send(bikeData);
+    return res.status(200).send(bikeData);
 }
 
 exports.getBikesService = async (req, res) => {
     let bikes = await getAllBikes().catch(e => res.status(500).send("error getting bikes"));
-    res.status(200).send(bikes);
+    return res.status(200).send(bikes);
 }
 
 exports.rentBikeService = async (req, res) => {
@@ -42,14 +42,14 @@ exports.rentBikeService = async (req, res) => {
     let bike = await getBikeById(bikeId);
 
     if (await getRentByBikeId(bikeId) != null) {
-        res.status(400).send({
+        return res.status(400).send({
             success: false,
             message: "bike already rented"
-        })
+        });
     }
 
     await createRent(user, bike).catch(e => res.status(500).send(e));
-    res.status(200).send({
+    return res.status(200).send({
         success: true,
         message: "rent successfully created"
     });
