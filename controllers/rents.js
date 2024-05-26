@@ -20,6 +20,6 @@ exports.createRent = async (email, bikeId) => {
     await Rent.insertOne(rent);
 }
 
-exports.returnRent = async (rentId) => {
-    await Rent.findOneAndUpdate({id: rentId, active: true}, {active: false})
+exports.returnRent = async (bikeId) => {
+    await Rent.findOneAndUpdate({bikeId: bikeId, active: true}, {active: false})
 }
