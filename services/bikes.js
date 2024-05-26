@@ -62,11 +62,6 @@ exports.rentBikeService = async (req, res) => {
 
 exports.returnBikeService = async (req, res) => {
     const rentId = req.body.rentId;
-    try {
-        await returnRent(rentId);
-    } catch (e) {
-        console.log("error");
-        return;
-    }
+    await returnRent(rentId).catch(e => res.status(500).send(e));
     return res.status(200).send({success:true});
 }
