@@ -1,5 +1,5 @@
-const express = require('express');
 const userController = require('../controllers/users');
+const {getUserByEmail} = require("../controllers/users");
 
 exports.registerService = async (req, res) => {
     let name = req.body.name;
@@ -30,4 +30,10 @@ exports.loginService = async (req, res) => {
         });
     }
     return res.status(401).send({success: false});
+}
+
+exports.getUserService = async (req, res) => {
+    let email = req.params.email;
+    let user = getUserByEmail(email).catch(e => {return res.status(500).send(e)});
+    return res.status(200).send(user);
 }

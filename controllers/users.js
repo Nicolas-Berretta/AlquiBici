@@ -9,7 +9,7 @@ exports.getUserById = async (id) => {
 }
 
 exports.getUserByEmail = async (email) => {
-    return await User.findOne({email});
+    return await User.findOne({email}).catch(e => console.log(e));
 }
 
 exports.createUser = async (name, email, password) => {
