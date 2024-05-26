@@ -21,5 +21,5 @@ exports.createRent = async (email, bikeId) => {
 }
 
 exports.returnRent = async (bikeId) => {
-    await Rent.findOneAndUpdate({bikeId: bikeId, active: true}, {active: false}).catch(e => console.log(e))
+    await Rent.findOneAndUpdate({bikeId: bikeId, active: true}, {$set : {active: false}}).catch(e => console.log(e))
 }
