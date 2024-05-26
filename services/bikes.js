@@ -62,6 +62,10 @@ exports.rentBikeService = async (req, res) => {
 
 exports.returnBikeService = async (req, res) => {
     const rentId = req.body.rentId;
-    await returnRent(rentId).catch(e => {return res.status(500).send(e)});
+    try {
+        await returnRent(rentId);
+    } catch (e) {
+        return res.status(500).send(e);
+    }
     return res.status(200).send({success:true});
 }
