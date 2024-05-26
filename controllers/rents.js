@@ -3,7 +3,7 @@ const database = require('../utils/database');
 const Rent = database.collection("rent");
 
 exports.getRentByBikeId = async (bikeId) => {
-    return await Rent.findOne({bikeId: bikeId});
+    return await Rent.findOne({bikeId: bikeId, active: true});
 }
 
 exports.createRent = async (email, bikeId) => {

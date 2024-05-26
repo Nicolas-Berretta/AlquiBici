@@ -18,12 +18,15 @@ exports.getBikeService = async (req, res) => {
 
     let owner = await getUserByEmail(bike.ownerEmail);
 
+    let rent = await getRentByBikeId(bikeId);
+
     let bikeData = {
         id: bike.id,
         ownerEmail: bike.ownerEmail,
         ownerName: owner.name,
         distance: bike.distance,
-        price: bike.price
+        price: bike.price,
+        rent: rent != null ? rent.id : null,
     }
 
     return res.status(200).send(bikeData);
