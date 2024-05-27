@@ -35,6 +35,6 @@ exports.loginService = async (req, res) => {
 exports.getUserService = async (req, res) => {
     let email = req.params.email;
     console.log(email);
-    let user = getUserByEmail(email).catch(e => {return res.status(500).send(e)});
+    let user = await getUserByEmail(email).catch(e => {return res.status(500).send(e)});
     return res.status(200).send(user);
 }
