@@ -21,10 +21,9 @@ exports.getBikeById = async (id) => {
     };
 }
 
-exports.createBike = async (ownerEmail, price) => {
-    let bikeCount = await Bike.countDocuments();
+exports.createBike = async (ownerEmail, price, bikeId) => {
     let bike = {
-        id: ownerEmail + bikeCount,
+        id: bikeId,
         ownerEmail: ownerEmail,
         price: price,
         distance: 0

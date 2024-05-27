@@ -5,8 +5,8 @@ const { createRent, returnRent, getRentByBikeId } = require("../controllers/rent
 exports.createBikeService = async (req, res) => {
     let ownerEmail = req.body.ownerEmail;
     let price = req.body.price;
-    // TODO dejar al usuario elegir el id
-    await createBike(ownerEmail, price).catch(e => res.status(500).send(e));
+    let bikeId = req.body.bikeId;
+    await createBike(ownerEmail, price, bikeId).catch(e => res.status(500).send(e));
 
     return res.status(200).send("bike created successfully");
 }
