@@ -11,6 +11,7 @@ exports.createUser = async (name, email, password) => {
         name: name,
         email: email,
         password: password,
+        isAdmin: false,
         balance: 0
     }
     await User.insertOne(user);
