@@ -2,7 +2,7 @@ const userController = require('../controllers/users');
 const {getUserByEmail} = require("../controllers/users");
 
 exports.registerService = async (req, res) => {
-    let name = req.body.name;
+    let name = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
 
