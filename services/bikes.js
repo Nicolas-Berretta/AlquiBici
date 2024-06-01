@@ -27,7 +27,8 @@ exports.getBikeService = async (req, res) => {
         distance: bike.distance,
         price: bike.price,
         rented: !!rent,
-        renterEmail: rent ? rent.userEmail : ""
+        renterEmail: rent ? rent.userEmail : "",
+        rentDistance: rent ? rent.distance : 0,
     }
 
     return res.status(200).send(bikeData);
