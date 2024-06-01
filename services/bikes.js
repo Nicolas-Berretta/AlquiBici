@@ -15,6 +15,9 @@ exports.getBikeService = async (req, res) => {
     let bikeId = req.params.bikeId;
 
     let bike = await getBikeById(bikeId);
+    if (bike === "error") {
+        return;
+    }
 
     let owner = await getUserByEmail(bike.ownerEmail);
 

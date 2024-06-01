@@ -10,8 +10,13 @@ exports.getAllBikes = async () => {
 
 exports.getBikeById = async (id) => {
     let bike = await Bike.findOne({id: id});
-    console.log(bike);
+    if (!bike) {
+        return "error";
+    }
     let owner = await getUserByEmail(bike.ownerEmail);
+    if (!owner) {
+        return "error";
+    }
 
     return {
         id: id,
