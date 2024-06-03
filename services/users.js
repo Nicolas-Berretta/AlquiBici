@@ -39,8 +39,8 @@ exports.getUserService = async (req, res) => {
 }
 
 exports.addFundsService = async (req, res) => {
-    let email = req.params.email;
-    let funds = req.params.funds;
+    let email = req.body.email;
+    let funds = req.body.funds;
     await addFunds(email, funds);
     return res.status(200).send("success");
 }
