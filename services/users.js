@@ -29,7 +29,7 @@ exports.loginService = async (req, res) => {
             email: email
         });
     }
-    return res.status(401).send({success: false});
+    return res.status(200).send({success: false});
 }
 
 exports.getUserService = async (req, res) => {
