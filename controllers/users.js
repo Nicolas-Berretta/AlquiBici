@@ -24,5 +24,5 @@ exports.login = async (email, password) => {
 
 exports.addFunds = async (email, funds) => {
     let user = await User.findOne({email});
-    await User.findOneAndUpdate({email}, {$set: {balance: user.balance + funds}});
+    await User.findOneAndUpdate({email}, {$set: {balance: +user.balance + +funds}});
 }
