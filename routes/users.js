@@ -8,6 +8,6 @@ router.post('/login', loginService);
 
 router.get('/get/:email', getUserService);
 
-router.get('/add-funds', addFundsService);
+router.post('/add-funds', addFundsService);
 
 module.exports = router;
