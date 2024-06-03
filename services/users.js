@@ -1,5 +1,5 @@
 const userController = require('../controllers/users');
-const {getUserByEmail} = require("../controllers/users");
+const {getUserByEmail, addFunds} = require("../controllers/users");
 
 exports.registerService = async (req, res) => {
     let name = req.body.username;
@@ -36,4 +36,11 @@ exports.getUserService = async (req, res) => {
     let email = req.params.email;
     let user = await getUserByEmail(email).catch(e => {return res.status(500).send(e)});
     return res.status(200).send(user);
+}
+
+exports.addFundsService = async (req, res) => {
+    let email = req.params.email;
+    let funds = req.params.funds;
+    await addFunds(email, funds);
+    return res.status(200).send("success");
 }

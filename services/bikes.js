@@ -16,7 +16,7 @@ exports.getBikeService = async (req, res) => {
 
     let bike = await getBikeById(bikeId);
     if (bike === "error") {
-        return;
+        return res.status(500).send("error");
     }
 
     let owner = await getUserByEmail(bike.ownerEmail);

@@ -21,3 +21,9 @@ exports.login = async (email, password) => {
     let user = await User.findOne({email});
     return user.password === password;
 }
+
+exports.addFunds = async (email, funds) => {
+    let user = await User.findOne({email});
+    user.balance += funds;
+    await user.save();
+}
