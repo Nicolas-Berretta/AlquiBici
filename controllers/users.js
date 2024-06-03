@@ -19,7 +19,7 @@ exports.createUser = async (name, email, password) => {
 
 exports.login = async (email, password) => {
     let user = await User.findOne({email});
-    return !user || user.password === password;
+    return user && user.password === password;
 }
 
 exports.addFunds = async (email, funds) => {
